@@ -19,7 +19,11 @@ By mining familiar content and categorising sentences according to their grammat
 
 #### [Export all your content from lingq into  a tree of text files in Google drive.](lingq_export.ipynb)
 
+Discussed here: https://forum.lingq.com/t/export-your-lingq-text-content-as-a-tree-of-files-to-google-drive/164914
+
 #### [Experiment to allow a user to select a single lesson from their lingq and run the content through spacy](lingq.ipynb)
+
+Discussed here: https://forum.lingq.com/t/google-colab-notebook-to-select-a-language-course-lesson-and-then-to-run-natural-language-processing-from-spacy-on-the-text/164334
 
 #### See also:
 
