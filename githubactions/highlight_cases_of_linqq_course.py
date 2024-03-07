@@ -13,8 +13,6 @@ import os
 import unicodedata
 import re
 
-
-from ipywidgets import widgets
 print(f"requests=={requests.__version__}")
 print(f"spacy=={spacy.__version__}")
 
