@@ -18,6 +18,23 @@
 .Gender_Masc:hover,
 .Gender_Fem:hover {border: 1px dashed black;}
 
+.Animacy_Inan::after {
+    content: "⚙️";
+    color: black;
+    background-color:white;
+}
+
+.Animacy_Hum::after {
+    content: "🙎‍♂️";
+    color: black;
+    background-color:white;
+}
+.Animacy_Nhum::after {
+    content: "🐶";
+    color: black;
+    background-color:white;
+}
+
 .Number_Ptan, .Number_Plur {
 text-decoration: underline;
 text-decoration-color: currentColor;
