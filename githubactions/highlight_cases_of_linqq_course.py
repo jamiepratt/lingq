@@ -123,7 +123,7 @@ css_style = """
 """
 
 course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/289027')
-
+print_json(course)
 html = f"""
 <!DOCTYPE html>
 <html lang="en">
