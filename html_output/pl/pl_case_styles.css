@@ -19,18 +19,18 @@
 .Gender_Fem:hover {border: 1px dashed black;}
 
 .Animacy_Inan::after {
-    content: "⚙️";
+    content: "⚙️♂";
     color: black;
     background-color:white;
 }
 
 .Animacy_Hum::after {
-    content: "🙎‍♂️";
+    content: "🙎‍♂️♂";
     color: black;
     background-color:white;
 }
 .Animacy_Nhum::after {
-    content: "🐶";
+    content: "🐶♂";
     color: black;
     background-color:white;
 }
