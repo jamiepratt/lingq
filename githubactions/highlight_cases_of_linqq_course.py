@@ -73,53 +73,6 @@ def process_and_display_paragraph(paragraph):
 
     return f"<p>{highlighted_text}</p>"
 
-css_style = """
-<style>
-    .Gender_Fem::after {
-        content: " ♀";
-        color: pink;
-        background-color:white;
-    }
-    .Gender_Masc::after {
-        content: " ♂";
-        color: blue;
-        background-color:white;
-    }
-    .Gender_Neut::after {
-      content: " ⚧";
-      color: black;
-      background-color:white;
-
-    }
-    .Gender_Neut:hover,
-    .Gender_Masc:hover,
-    .Gender_Fem:hover {border: 1px dashed black;}
-
-    .Number_Ptan, .Number_Plur {
-    text-decoration: underline;
-    text-decoration-color: currentColor;
-    }
-    .Number_Ptan {
-      text-decoration-style: dashed;
-
-    }
-
-    .Case_Ins {
-        color: orange;
-    }
-    .Case_Acc {color:green;}
-
-.Case_Nom {color: yellow; background-color:lightgray}
-
-.Case_Gen {color: burlywood}
-
-.Case_Loc {color:white; background-color:lightgray }
-
-.Case_Dat {color:aqua; background-color:lightgray }
-</style>
-
-
-"""
 
 course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/289027')
 print_json(course)
@@ -130,9 +83,7 @@ html = f"""
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{course['title']}</title>
-    <style>
-{css_style}
-    </style>
+    <link rel="stylesheet" href="pl_case_styles.css">
 </head>
 <body>
 """
