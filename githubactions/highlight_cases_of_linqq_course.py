@@ -88,6 +88,8 @@ html = f"""
 """
 
 html += """
+
+<p>Material is from <a href="https://www.lingq.com/">LingQ</a>, a language learning platform. This page was generated using a Python script that uses the LingQ API to fetch the course material and the spaCy library to process and display the text.</p>
 <p>Key:</p>
 <ul><li>Number
     <ul>
