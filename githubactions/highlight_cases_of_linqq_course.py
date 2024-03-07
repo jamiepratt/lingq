@@ -1,8 +1,5 @@
 
 
-#Using Google colab secrets to store lingq api key.
-from google.colab import userdata
-
 import urllib.parse
 
 import requests
