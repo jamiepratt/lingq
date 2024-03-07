@@ -115,6 +115,7 @@ html += """
         <li class="Animacy_Hum">Hum</li>
     </ul></li>
 </ul>
+<p>Hover your cursor over any word to see more morphological information, including what is the dictionary (lemmatized) form of the word and what part of speech it is in the context.</p>
 """
 
 for lesson in course['lessons']:
