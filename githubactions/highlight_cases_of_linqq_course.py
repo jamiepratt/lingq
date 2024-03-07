@@ -13,13 +13,12 @@ import os
 import unicodedata
 import re
 
-print(f"requests=={requests.__version__}")
-print(f"spacy=={spacy.__version__}")
-
 """# Helper Functions"""
 
 def get_json_response (url):
   lingq_api_key = os.environ.get('LINGQ_API_KEY')
+  if not lingq_api_key:
+    raise ValueError("LINGQ_API_KEY is not set in the environment variables.")  
   headers = {
     'Authorization': f'Token {lingq_api_key}',
     'Content-Type': 'application/json'
