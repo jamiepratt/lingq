@@ -89,18 +89,31 @@ html = f"""
 
 html += """
 <p>Key:</p>
-<ul>
-<li class="Number_Plur">Number_Plur</li>
-<li class="Number_Ptan">Number_Ptan</li>
-<li class="Gender_Masc">Gender_Masc</li>
-<li class="Gender_Fem">Gender_Fem</li>
-<li class="Gender_Neut">Gender_Neut</li>
-<li class="Case_Nom">Case_Nom</li>
-<li class="Case_Acc">Case_Acc</li>
-<li class="Case_Ins">Case_Ins</li>
-<li class="Case_Gen">Case_Gen</li>
-<li class="Case_Loc">Case_Loc</li>
-<li class="Case_Dat">Case_Dat</li>
+<ul><li>Number
+    <ul>
+        <li class="Number_Plur">Plur</li>
+        <li class="Number_Ptan">Ptan</li>
+    </ul></li>
+    <li>Gender
+        <ul><li class="Gender_Masc">Masc</li>
+        <li class="Gender_Fem">Fem</li>
+        <li class="Gender_Neut">Neut</li>
+        </ul></li>
+    <li>Case
+        <ul>
+        <li class="Case_Nom">Nom</li>
+        <li class="Case_Acc">Acc</li>
+        <li class="Case_Ins">Ins</li>
+        <li class="Case_Gen">Gen</li>
+        <li class="Case_Loc">Loc</li>
+        <li class="Case_Dat">Dat</li>
+    </ul></li>
+    <li>Animacy
+        <ul>
+        <li class="Animacy_Inan">Inan</li>
+        <li class="Animacy_Nhum">Nhum</li>
+        <li class="Animacy_Hum">Hum</li>
+    </ul></li>
 </ul>
 """
 
