@@ -75,7 +75,6 @@ def process_and_display_paragraph(paragraph):
 
 
 course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/289027')
-print_json(course)
 html = f"""
 <!DOCTYPE html>
 <html lang="en">
@@ -113,12 +112,11 @@ for lesson in course['lessons']:
     joined_sentences = ' '.join(sentence['cleanText'] for sentence in paragraph['sentences'])
     html += process_and_display_paragraph(joined_sentences)
 
-html += "</body>"
+html += "</body></html>"
 
-subfolder = "html_output"
+subfolder = "html_output/pl"
 os.makedirs(subfolder, exist_ok=True)
 html_file = os.path.join(subfolder, legal_filename(course['title']) + ".html")
 with open(html_file, "w", encoding="utf-8") as file:
     file.write(html)
-    print("HTML output written to output.html")
 
