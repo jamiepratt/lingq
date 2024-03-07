@@ -1,0 +1,33 @@
+name: Generate HTML and commit to GitHub
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: pip install -r githubactions/requirements.txt
+
+      - name: Run Python script
+        run: python githubactions/highlight_cases_of_linqq_course.py
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add html_output
+          git commit -m "generated new page with highlighted cases"
+          git push
