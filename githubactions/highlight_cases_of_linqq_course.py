@@ -50,9 +50,6 @@ def legal_filename(filename):
 
 #@title Choose a language model
 model = "pl_core_news_lg" #@param ["fi_core_news_lg", "de_core_news_lg", "en_core_web_lg", "nl_core_news_lg", "sv_core_news_lg", "da_core_news_lg", "pl_core_news_lg", "ru_core_news_lg", "uk_core_news_lg"]
-!python -m spacy download {model}
-
-spacy.prefer_gpu()
 
 nlp = spacy.load(model)
 

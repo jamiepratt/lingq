@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r githubactions/requirements.txt
 
+      - name: Install spacy language model
+        run: python -m spacy download "pl_core_news_lg"
+
       - name: Run Python script
         run: python githubactions/highlight_cases_of_linqq_course.py
 
