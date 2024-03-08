@@ -69,7 +69,7 @@ def process_and_display_paragraph(paragraph):
         styling_class = " ".join(morph_features)
 
         # Append the token span with style and tooltip
-        highlighted_text += f'<span class="{styling_class}" title="{tooltip_text}">{token.text}</span>'
+        highlighted_text += f'<span class="{styling_class}" data-tooltip="{tooltip_text}">{token.text}</span>'
 
     return f"<p>{highlighted_text}</p>"
 
@@ -83,6 +83,7 @@ html = f"""
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{course['title']}</title>
     <link rel="stylesheet" href="pl_case_styles.css">
+    <script src="popup.js"></script>
 </head>
 <body>
 """
