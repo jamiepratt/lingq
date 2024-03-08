@@ -62,7 +62,7 @@ def process_and_display_paragraph(paragraph):
         case = token.morph.get("Case")
         morph = " ".join(f'{token.morph}'.split("|"))
         # Define the tooltip text
-        tooltip_text = f"{token.lemma_} {token.pos_} ({morph})"
+        tooltip_text = f"{token.lemma_} {token.pos_} <br> ({morph})"
         morph_features = f'{token.morph}'.split("|")
         morph_features = [morph_feature.replace("=", "_") for morph_feature in morph_features]
         morph_features.append(token.pos_)
@@ -80,7 +80,7 @@ js = """
         function createPopup(text, target) {
             const popup = document.createElement('div');
             popup.classList.add('popup');
-            popup.textContent = text;
+            popup.innerHTML = text;
             document.body.appendChild(popup);
 
             // Position the popup above the target element
@@ -90,7 +90,7 @@ js = """
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
             popup.style.left = `${rect.left}px`;
-            popup.style.top = `${rect.top + scrollTop - popup.offsetHeight - 5}px`;
+            popup.style.top = `${rect.bottom + scrollTop - popup.offsetHeight + 5}px`;
             popup.style.display = 'block';
         }
 
