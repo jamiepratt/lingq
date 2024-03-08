@@ -74,16 +74,7 @@ def process_and_display_paragraph(paragraph):
     return f"<p>{highlighted_text}</p>"
 
 
-course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/289027')
-html = f"""
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{course['title']}</title>
-    <link rel="stylesheet" href="pl_case_styles.css">
-    <script>
+js = """
     document.addEventListener('DOMContentLoaded', function() {
         // Function to create the popup
         function createPopup(text, target) {
@@ -120,6 +111,19 @@ html = f"""
             });
         });
     });
+"""
+
+course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/289027')
+html = f"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{course['title']}</title>
+    <link rel="stylesheet" href="pl_case_styles.css">
+    <script>
+    {js}
     </script>
 </head>
 <body>
