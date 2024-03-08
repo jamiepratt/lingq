@@ -169,9 +169,8 @@ html += """
 """
 
 for lesson in course['lessons']:
-  lesson_details = get_json_response(lesson['url'])
   paragraphs = get_json_response(lesson['url'] + 'paragraphs/')
-  html += f"<h2>{lesson_details['title']}</h2>"
+  html += f"<h2>{lesson['title']}</h2>"
   for paragraph in paragraphs:
     joined_sentences = ' '.join(sentence['cleanText'] for sentence in paragraph['sentences'])
     html += process_and_display_paragraph(joined_sentences)
