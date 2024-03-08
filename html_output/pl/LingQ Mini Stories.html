@@ -18,8 +18,12 @@
 
             // Position the popup above the target element
             const rect = target.getBoundingClientRect();
+
+            // Adjust the position to account for scrolling
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
             popup.style.left = `${rect.left}px`;
-            popup.style.top = `${rect.top - popup.offsetHeight - 5}px`; // Adjust 5px for spacing
+            popup.style.top = `${rect.top + scrollTop - popup.offsetHeight - 5}px`;
             popup.style.display = 'block';
         }
 
