@@ -62,7 +62,9 @@ def process_and_display_paragraph(paragraph):
         case = token.morph.get("Case")
         morph = " ".join(f'{token.morph}'.split("|"))
         # Define the tooltip text
-        tooltip_text = f"{token.lemma_} {token.pos_} <br> ({morph})"
+        tooltip_text = f"{token.lemma_} {token.pos_}"
+        if morph:
+            tooltip_text += f"<br> ({morph})"
         morph_features = f'{token.morph}'.split("|")
         morph_features = [morph_feature.replace("=", "_") for morph_feature in morph_features]
         morph_features.append(token.pos_)
