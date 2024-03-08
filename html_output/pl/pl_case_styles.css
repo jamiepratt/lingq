@@ -10,6 +10,14 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
+div.preamble, div.lesson {
+  padding: 1em;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
 .Gender_Fem::after {
     content: " ♀";
     color: pink;

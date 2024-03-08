@@ -136,7 +136,7 @@ html = f"""
 """
 
 html += """
-
+<div class="preamble">
 <p>Material is from <a href="https://www.lingq.com/">LingQ</a>, a language learning platform. This page was generated using a Python script that uses the LingQ API to fetch the course material and the spaCy library to process and display the text.</p>
 <p>Key:</p>
 <ul><li>Number
@@ -166,14 +166,17 @@ html += """
     </ul></li>
 </ul>
 <p>Hover your cursor over any word to see more morphological information, including what is the dictionary (lemmatized) form of the word and what part of speech it is in the context.</p>
+</div>
 """
 
 for lesson in course['lessons']:
   paragraphs = get_json_response(lesson['url'] + 'paragraphs/')
+  html += "<div class='lesson'>"
   html += f"<h2>{lesson['title']}</h2>"
   for paragraph in paragraphs:
     joined_sentences = ' '.join(sentence['cleanText'] for sentence in paragraph['sentences'])
     html += process_and_display_paragraph(joined_sentences)
+  html += "</div>"
 
 html += "</body></html>"
 
