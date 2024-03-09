@@ -118,8 +118,8 @@ js = """
         });
     });
 """
-
-course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/289027')
+course_id = 289027
+course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/{course_id}/')
 html = f"""
 <!DOCTYPE html>
 <html lang="en">
@@ -135,7 +135,7 @@ html = f"""
 <body>
 """
 
-reader_course_url = f"https://www.lingq.com/en/learn/pl/web/library/course/{course['id']}/"
+reader_course_url = f"https://www.lingq.com/en/learn/pl/web/library/course/{course_id}/"
 
 html += f"<h1><a href= \"{reader_course_url}\">{course['title']}</a></h1>"
 
