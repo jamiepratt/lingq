@@ -119,7 +119,7 @@ js = """
     });
 """
 
-course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/1646223')
+course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/289027')
 html = f"""
 <!DOCTYPE html>
 <html lang="en">
