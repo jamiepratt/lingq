@@ -157,6 +157,8 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
 
     html += f"<h1><a href= \"{reader_course_url}\">{course['title']}</a></h1>"
 
+    html += "<div><a href=\"index.html\">Other analysed texts.</a></div>"
+
     html += f"<p>{course['description']}</p>"
 
     index_html += f"<li><h2><a href=\"{legal_filename(course['title'])}.html\">{course['title']}</a></h2></li>"
