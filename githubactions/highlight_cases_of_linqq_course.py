@@ -118,9 +118,27 @@ js = """
         });
     });
 """
-course_id = 289027
-course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/{course_id}/')
-html = f"""
+
+index_html = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All content</title>
+</head>
+<body>
+<h1>Menu linking to analysed courses.</h1>
+<ul>
+"""
+
+
+
+
+for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
+
+    course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/{course_id}/')
+    html = f"""
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -135,13 +153,15 @@ html = f"""
 <body>
 """
 
-reader_course_url = f"https://www.lingq.com/en/learn/pl/web/library/course/{course_id}/"
+    reader_course_url = f"https://www.lingq.com/en/learn/pl/web/library/course/{course_id}/"
 
-html += f"<h1><a href= \"{reader_course_url}\">{course['title']}</a></h1>"
+    html += f"<h1><a href= \"{reader_course_url}\">{course['title']}</a></h1>"
 
-html += f"<p>{course['description']}</p>"
+    html += f"<p>{course['description']}</p>"
 
-html += """
+    index_html += f"<li><h2><a href=\"html_output/pl/{legal_filename(course['title'])}.html\">{course['title']}</a></h2></li>"
+
+    html += """
 <div class="preamble">
 <p>Material is from <a href="https://www.lingq.com/">LingQ</a>, a language learning platform. This page was generated using a Python script that uses the LingQ API to fetch the course material and the spaCy library to process and display the text.</p>
 <p>Key:</p>
@@ -175,21 +195,31 @@ html += """
 </div>
 """
 
-for lesson in course['lessons']:
-  paragraphs = get_json_response(lesson['url'] + 'paragraphs/')
-  html += "<div class='lesson'>"
-  reader_lesson_url = f"https://www.lingq.com/en/learn/pl/web/reader/{lesson['id']}/"
-  html += f"<h2><a href=\"{reader_lesson_url}\" title=\"Link to Lingq Lesson\">{lesson['title']}</a></h2>"
-  for paragraph in paragraphs:
-    joined_sentences = ' '.join(sentence['cleanText'] for sentence in paragraph['sentences'])
-    html += process_and_display_paragraph(joined_sentences)
-  html += "</div>"
+    for lesson in course['lessons']:
+        paragraphs = get_json_response(lesson['url'] + 'paragraphs/')
+        html += "<div class='lesson'>"
+        reader_lesson_url = f"https://www.lingq.com/en/learn/pl/web/reader/{lesson['id']}/"
+        html += f"<h2><a href=\"{reader_lesson_url}\" title=\"Link to Lingq Lesson\">{lesson['title']}</a></h2>"
+        for paragraph in paragraphs:
+            joined_sentences = ' '.join(sentence['cleanText'] for sentence in paragraph['sentences'])
+            html += process_and_display_paragraph(joined_sentences)
+        html += "</div>"
 
-html += "</body></html>"
+    html += "</body></html>"
 
-subfolder = "html_output/pl"
-os.makedirs(subfolder, exist_ok=True)
-html_file = os.path.join(subfolder, legal_filename(course['title']) + ".html")
-with open(html_file, "w", encoding="utf-8") as file:
-    file.write(html)
+    subfolder = "html_output/pl"
+    os.makedirs(subfolder, exist_ok=True)
+    html_file = os.path.join(subfolder, legal_filename(course['title']) + ".html")
+    with open(html_file, "w", encoding="utf-8") as file:
+        file.write(html)
 
+
+index_html += f"""
+</ul>
+</body>
+"""
+
+index_file = os.path.join(subfolder, "index.html")
+
+with open(index_file, "w", encoding="utf-8") as file:
+    file.write(index_html)
