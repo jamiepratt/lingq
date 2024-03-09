@@ -119,7 +119,7 @@ js = """
     });
 """
 
-course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/1646225')
+course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/1646223')
 html = f"""
 <!DOCTYPE html>
 <html lang="en">
@@ -134,6 +134,8 @@ html = f"""
 </head>
 <body>
 """
+
+html += f"<h1>{course['title']}</h1>"
 
 html += """
 <div class="preamble">
