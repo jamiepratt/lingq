@@ -135,7 +135,11 @@ html = f"""
 <body>
 """
 
-html += f"<h1>{course['title']}</h1>"
+reader_course_url = f"https://www.lingq.com/en/learn/pl/web/library/course/{course['id']}/"
+
+html += f"<h1><a href= \"{reader_course_url}\">{course['title']}</a></h1>"
+
+html += f"<p>{course['description']}</p>"
 
 html += """
 <div class="preamble">
@@ -174,7 +178,8 @@ html += """
 for lesson in course['lessons']:
   paragraphs = get_json_response(lesson['url'] + 'paragraphs/')
   html += "<div class='lesson'>"
-  html += f"<h2>{lesson['title']}</h2>"
+  reader_lesson_url = f"https://www.lingq.com/en/learn/pl/web/reader/{lesson['id']}/"
+  html += f"<h2><a href=\"{reader_lesson_url}\" title=\"Link to Lingq Lesson\">{lesson['title']}</a></h2>"
   for paragraph in paragraphs:
     joined_sentences = ' '.join(sentence['cleanText'] for sentence in paragraph['sentences'])
     html += process_and_display_paragraph(joined_sentences)
