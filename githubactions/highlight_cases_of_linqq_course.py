@@ -159,7 +159,7 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
 
     html += f"<p>{course['description']}</p>"
 
-    index_html += f"<li><h2><a href=\"html_output/pl/{legal_filename(course['title'])}.html\">{course['title']}</a></h2></li>"
+    index_html += f"<li><h2><a href=\"{legal_filename(course['title'])}.html\">{course['title']}</a></h2></li>"
 
     html += """
 <div class="preamble">
