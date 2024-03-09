@@ -138,6 +138,17 @@ index_html = """
 for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
 
     course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/{course_id}/')
+
+
+    index_html += f"<li><h2><a href=\"{legal_filename(course['title'])}.html\">{course['title']}</a></h2></li>\n"
+
+
+    subfolder = "html_output/pl"
+    os.makedirs(subfolder, exist_ok=True)
+    html_file = os.path.join(subfolder, legal_filename(course['title']) + ".html")
+    if os.path.isfile(html_file):
+        continue
+
     html = f"""
 <!DOCTYPE html>
 <html lang="en">
@@ -160,8 +171,6 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
     html += "<div><a href=\"index.html\">Other analysed texts.</a></div>"
 
     html += f"<p>{course['description']}</p>"
-
-    index_html += f"<li><h2><a href=\"{legal_filename(course['title'])}.html\">{course['title']}</a></h2></li>"
 
     html += """
 <div class="preamble">
@@ -209,9 +218,6 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
 
     html += "</body></html>"
 
-    subfolder = "html_output/pl"
-    os.makedirs(subfolder, exist_ok=True)
-    html_file = os.path.join(subfolder, legal_filename(course['title']) + ".html")
     with open(html_file, "w", encoding="utf-8") as file:
         file.write(html)
 
