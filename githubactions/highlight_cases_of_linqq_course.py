@@ -15,6 +15,18 @@ import re
 
 """# Helper Functions"""
 
+def render_template(template_path, context=None):
+    if context is None:
+        context = {}
+    with open(template_path, 'r', encoding='utf-8') as file:
+        template = file.read()
+    
+    for key, value in context.items():
+        placeholder = '{{' + key + '}}'  # Adjust based on your placeholder format
+        template = template.replace(placeholder, value)
+    
+    return template
+
 def get_json_response (url):
   lingq_api_key = os.environ.get('LINGQ_API_KEY')
   if not lingq_api_key:
@@ -73,74 +85,20 @@ def process_and_display_paragraph(paragraph):
         # Append the token span with style and tooltip
         highlighted_text += f'<span class="{styling_class}" data-tooltip="{tooltip_text}">{token.text}</span>'
 
-    return f"<p>{highlighted_text}</p>"
+    return f"<p>{highlighted_text}</p>\n"
 
+index_html = render_template('githubactions/templates/top_fragment_index.html')
 
-js = """
-    document.addEventListener('DOMContentLoaded', function() {
-        // Function to create the popup
-        function createPopup(text, target) {
-            const popup = document.createElement('div');
-            popup.classList.add('popup');
-            popup.innerHTML = text;
-            document.body.appendChild(popup);
-
-            // Position the popup above the target element
-            const rect = target.getBoundingClientRect();
-
-            // Adjust the position to account for scrolling
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-            popup.style.left = `${rect.left}px`;
-            popup.style.top = `${rect.bottom + scrollTop - popup.offsetHeight + 5}px`;
-            popup.style.display = 'block';
-        }
-
-        // Function to remove the popup
-        function removePopup() {
-            const popup = document.querySelector('.popup');
-            if (popup) {
-                popup.remove();
-            }
-        }
-
-        // Attach event listeners to elements with data-tooltip
-        const elements = document.querySelectorAll('[data-tooltip]');
-        elements.forEach(el => {
-            el.addEventListener('mouseenter', function() {
-                const tooltipText = this.getAttribute('data-tooltip');
-                createPopup(tooltipText, this);
-            });
-
-            el.addEventListener('mouseleave', function() {
-                removePopup();
-            });
-        });
-    });
-"""
-
-index_html = """
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All content</title>
-</head>
-<body>
-<h1>Menu linking to analysed courses.</h1>
-<ul>
-"""
-
-
-
+key_html = render_template('githubactions/templates/key.html')
+js = render_template('githubactions/templates/tooltip_js.js', {'key_html': key_html})
 
 for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
 
     course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/{course_id}/')
 
 
-    index_html += f"<li><h2><a href=\"{legal_filename(course['title'])}.html\">{course['title']}</a></h2></li>\n"
+    index_html += render_template({'course_title' : course['title']
+                                   'filename': legal_filename(course['title'])})
 
 
     subfolder = "html_output/pl"
@@ -149,42 +107,14 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
     if os.path.isfile(html_file):
         continue
 
-    html = f"""
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{course['title']}</title>
-    <link rel="stylesheet" href="pl_case_styles.css">
-    <script>
-    {js}
-    </script>
-</head>
-<body>
-"""
+    html = render_template('githubactions/templates/top_fragment_page.html',
+                                    {'course_title' : course['title']
+                                     'pagename': legal_filename(course['title'])
+                                     'reader_course_url' : f"https://www.lingq.com/en/learn/pl/web/library/course/{course_id}/")
+                                     'course_description' : course['description']
+                                     'key_html' : key_html}
 
-    reader_course_url = f"https://www.lingq.com/en/learn/pl/web/library/course/{course_id}/"
-
-    html += f"<h1><a href= \"{reader_course_url}\">{course['title']}</a></h1>"
-
-    html += "<div><a href=\"index.html\">Other analysed texts.</a></div>"
-
-    html += f"<p>{course['description']}</p>"
-
-    html += """
-<div class="preamble">
-<p>Material is from <a href="https://www.lingq.com/">LingQ</a>, a language learning platform. This page was generated using a Python script that uses the LingQ API to fetch the course material and the spaCy library to process and display the text.</p>
-<p>Key:</p>
-<ul><li>Number: <span class="Number_Plur">Plur</span> <span class="Number_Ptan">Ptan</span></li>
-    <li>Gender: <span class="Gender_Masc">Masc</span> <span class="Gender_Fem">Fem</span> <span class="Gender_Neut">Neut</span></li>
-    <li>Case: <span class="Case_Nom">Nom</span>  <span class="Case_Acc">Acc</span> <span class="Case_Ins">Ins</span> <span class="Case_Gen">Gen</span> <span class="Case_Loc">Loc</span> <span class="Case_Dat">Dat</span>< <span class="Case_Voc">Voc</span></li>
-    <li>Animacy: <span class="Animacy_Inan">Inan</span> <span class="Animacy_Nhum">Nhum</span> <span class="Animacy_Hum">Hum</span></li>
-</ul>
-<p>Hover your cursor over any word to see more morphological information, including what is the dictionary (lemmatized) form of the word and what part of speech it is in the context.</p>
-</div>
-"""
-
+    
     for lesson in course['lessons']:
         paragraphs = get_json_response(lesson['url'] + 'paragraphs/')
         html += "<div class='lesson'>"
