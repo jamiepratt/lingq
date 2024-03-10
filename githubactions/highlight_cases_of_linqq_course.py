@@ -98,14 +98,15 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
     course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/{course_id}/')
 
 
-    index_html += render_template('githubactions/templates/list_item_fragment_index.html',
+    filename = legal_filename(course['title'])
+    index_html += render_template('githubactions/templates/index_item_fragment.html',
                                     {'course_title' : course['title'],
-                                   'filename': legal_filename(course['title'])})
+                                   'filename': filename})
 
 
     subfolder = "html_output/pl"
     os.makedirs(subfolder, exist_ok=True)
-    html_file = os.path.join(subfolder, legal_filename(course['title']) + ".html")
+    html_file = os.path.join(subfolder, filename) + ".html")
     if os.path.isfile(html_file):
         continue
 
