@@ -90,7 +90,7 @@ def process_and_display_paragraph(paragraph):
 index_html = render_template('githubactions/templates/top_fragment_index.html')
 
 key_html = render_template('githubactions/templates/key.html')
-js = render_template('githubactions/templates/tooltip_js.js', {'key_html': key_html})
+js = render_template('githubactions/templates/tooltip.js', {'key_html': key_html})
 
 for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
 
