@@ -92,12 +92,13 @@ index_html = render_template('githubactions/templates/top_fragment_index.html')
 key_html = render_template('githubactions/templates/key.html')
 js = render_template('githubactions/templates/tooltip.js', {'key_html': key_html})
 
+
 for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
 
     course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/{course_id}/')
 
 
-    index_html += render_template('githubactions/templates/top_fragment_page.html',
+    index_html += render_template('githubactions/templates/list_item_fragment_index.html',
                                     {'course_title' : course['title'],
                                    'filename': legal_filename(course['title'])})
 
