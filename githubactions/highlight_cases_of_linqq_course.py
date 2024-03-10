@@ -109,8 +109,7 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
 
     html = render_template('githubactions/templates/top_fragment_page.html',
                                     {'course_title' : course['title'],
-                                     'pagename': legal_filename(course['title'],
-                                     'reader_course_url' : f"https://www.lingq.com/en/learn/pl/web/library/course/{course_id}/"),
+                                     'reader_course_url' : f"https://www.lingq.com/en/learn/pl/web/library/course/{course_id}/",
                                      'course_description' : course['description'],
                                      'key_html' : key_html})
 
