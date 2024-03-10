@@ -10,9 +10,12 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
+a {opacity: 50%}
+
 div.preamble, div.lesson {
-  padding: 1em;
-  background-color: #f5f5f5;
+  margin-bottom: 1em;
+  padding: 0.7em;
+
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -36,7 +39,13 @@ div.preamble, div.lesson {
 }
 .Gender_Neut:hover,
 .Gender_Masc:hover,
-.Gender_Fem:hover {border: 1px dashed black;}
+.Gender_Fem:hover {border: 1px dashed}
+
+.Gender_Neut,
+.Gender_Masc,
+.Gender_Fem {border: 1px dashed transparent}
+
+.Animacy_Inan::after, .Animacy_Hum::after, .Animacy_Nhum::after {opacity:70%}
 
 .Animacy_Inan::after {
     content: "⚙️♂";
@@ -57,22 +66,35 @@ div.preamble, div.lesson {
 
 .Number_Ptan, .Number_Plur {
 text-decoration: underline;
-text-decoration-color: currentColor;
+    text-underline-offset: 3px;
+    text-decoration-color: black;
 }
 .Number_Ptan {
   text-decoration-style: dashed;
 
 }
-
-.Case_Ins {
-    color: orange;
+.Case_Nom {
+  color: #006400a6; 
+  background-color: #90ee905c
 }
-.Case_Acc {color:green;}
-
-.Case_Nom {color: yellow; background-color:lightgray}
-
-.Case_Gen {color: burlywood}
-
-.Case_Loc {color:white; background-color:lightgray }
-
-.Case_Dat {color:aqua; background-color:lightgray }
+.Case_Ins {
+  color: #FF8C00; 
+}
+.Case_Acc {
+    color: yellow; 
+    background-color:lightgray;
+}
+.Case_Gen {
+    color: #DC143C; 
+}
+.Case_Loc {
+    color: #9400D3; 
+}
+.Case_Dat {
+    color: #ff149385; 
+    background-color:#ffb6c17d;
+}
+.Case_Voc {
+    color: white;
+    background-color:black;
+}

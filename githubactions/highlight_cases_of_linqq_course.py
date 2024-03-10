@@ -178,7 +178,7 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
 <p>Key:</p>
 <ul><li>Number: <span class="Number_Plur">Plur</span> <span class="Number_Ptan">Ptan</span></li>
     <li>Gender: <span class="Gender_Masc">Masc</span> <span class="Gender_Fem">Fem</span> <span class="Gender_Neut">Neut</span></li>
-    <li>Case: <span class="Case_Nom">Nom</span>  <span class="Case_Acc">Acc</span> <span class="Case_Ins">Ins</span> <span class="Case_Gen">Gen</span> <span class="Case_Loc">Loc</span> <span class="Case_Dat">Dat</span></li>
+    <li>Case: <span class="Case_Nom">Nom</span>  <span class="Case_Acc">Acc</span> <span class="Case_Ins">Ins</span> <span class="Case_Gen">Gen</span> <span class="Case_Loc">Loc</span> <span class="Case_Dat">Dat</span>< <span class="Case_Voc">Voc</span></li>
     <li>Animacy: <span class="Animacy_Inan">Inan</span> <span class="Animacy_Nhum">Nhum</span> <span class="Animacy_Hum">Hum</span></li>
 </ul>
 <p>Hover your cursor over any word to see more morphological information, including what is the dictionary (lemmatized) form of the word and what part of speech it is in the context.</p>
