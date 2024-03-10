@@ -20,8 +20,6 @@ jobs:
           cache: 'pip' # caching pip dependencies
        run: pip install -r githubactions/requirements.txt
 
-      - name: Install spacy language model
-        run: python -m spacy download "pl_core_news_lg"
       - name: Run Python script
         env:
           LINGQ_API_KEY: ${{ secrets.LINGQ_API_KEY }}
