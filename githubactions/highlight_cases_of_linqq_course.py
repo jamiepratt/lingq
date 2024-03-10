@@ -97,7 +97,7 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
     course = get_json_response(f'https://www.lingq.com/api/v2/pl/collections/{course_id}/')
 
 
-    index_html += render_template({'course_title' : course['title']
+    index_html += render_template({'course_title' : course['title'],
                                    'filename': legal_filename(course['title'])})
 
 
@@ -108,11 +108,11 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
         continue
 
     html = render_template('githubactions/templates/top_fragment_page.html',
-                                    {'course_title' : course['title']
-                                     'pagename': legal_filename(course['title'])
-                                     'reader_course_url' : f"https://www.lingq.com/en/learn/pl/web/library/course/{course_id}/")
-                                     'course_description' : course['description']
-                                     'key_html' : key_html}
+                                    {'course_title' : course['title'],
+                                     'pagename': legal_filename(course['title'],
+                                     'reader_course_url' : f"https://www.lingq.com/en/learn/pl/web/library/course/{course_id}/"),
+                                     'course_description' : course['description'],
+                                     'key_html' : key_html})
 
     
     for lesson in course['lessons']:
