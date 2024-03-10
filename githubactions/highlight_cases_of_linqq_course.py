@@ -106,7 +106,7 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
 
     subfolder = "html_output/pl"
     os.makedirs(subfolder, exist_ok=True)
-    html_file = os.path.join(subfolder, filename) + ".html")
+    html_file = os.path.join(subfolder, filename) + ".html"
     if os.path.isfile(html_file):
         continue
 
