@@ -90,7 +90,8 @@ def process_and_display_paragraph(paragraph):
 index_html = render_template('githubactions/templates/top_fragment_index.html')
 
 key_html = render_template('githubactions/templates/key.html')
-js = render_template('githubactions/templates/tooltip.js', {'key_html': key_html})
+escaped_key_html = key_html.replace('"', '\\"').replace('\n', '\\n')
+js = render_template('githubactions/templates/tooltip.js', {'key_html': escaped_key_html})
 
 
 for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
@@ -114,6 +115,7 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
                                     {'course_title' : course['title'],
                                      'reader_course_url' : f"https://www.lingq.com/en/learn/pl/web/library/course/{course_id}/",
                                      'course_description' : course['description'],
+                                     'key_html' : key_html,
                                      'js' : js})
 
     
