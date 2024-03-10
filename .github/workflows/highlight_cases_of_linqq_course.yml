@@ -18,6 +18,7 @@ jobs:
         with:
           python-version: '3.9'
           cache: 'pip' # caching pip dependencies
+      - name: Pip
         run: pip install -r githubactions/requirements.txt
 
       - name: Run Python script
