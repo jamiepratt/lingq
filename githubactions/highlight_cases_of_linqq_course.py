@@ -114,7 +114,7 @@ for course_id in [1646223, 289027, 1440209, 1646225, 902291]:
                                     {'course_title' : course['title'],
                                      'reader_course_url' : f"https://www.lingq.com/en/learn/pl/web/library/course/{course_id}/",
                                      'course_description' : course['description'],
-                                     'key_html' : key_html})
+                                     'js' : js})
 
     
     for lesson in course['lessons']:
